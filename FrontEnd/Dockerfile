@@ -8,16 +8,16 @@ WORKDIR /src
 COPY ./FrontEnd/FrontEnd.csproj ./
 
 # Restore dependencies specified in the project
-RUN dotnet restore "FrontEnd.csproj"
+RUN dotnet restore "/FrontEnd/FrontEnd.csproj"
 
 # Copy the entire project directory
 COPY . ./
 
 # Build the application with the Release configuration
-RUN dotnet build "FrontEnd.csproj" -c Release -o /app/build
+RUN dotnet build "/FrontEnd/FrontEnd.csproj" -c Release -o /app/build
 
 # Publish the application (optional, if publishing is required)
-RUN dotnet publish "FrontEnd.csproj" -c Release -o /app/publish
+RUN dotnet publish "/FrontEnd/FrontEnd.csproj" -c Release -o /app/publish
 
 # Use the official .NET runtime image to run the application
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS runtime
