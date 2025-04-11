@@ -11,10 +11,10 @@ COPY . ./
 RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
 
 # Build the application with the Release configuration
-RUN dotnet build "/FrontEnd/FrontEnd.csproj" -c Release -o /app/build
+RUN dotnet build src/FrontEnd/FrontEnd.csproj -c Release -o /app/build
 
 # Publish the application (optional, if publishing is required)
-RUN dotnet publish "/FrontEnd/FrontEnd.csproj" -c Release -o /app/publish
+RUN dotnet publish src/FrontEnd/FrontEnd.csproj -c Release -o /app/publish
 
 # Use the official .NET runtime image to run the application
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
