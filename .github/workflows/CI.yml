@@ -15,9 +15,9 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Build and Push Image 1
       run: |
-        docker build -f ./FrontEnd/Dockerfile -t ACREADeployCA.azurecr.io/frontend:latest .
-        docker push ACREADeployCA.azurecr.io/frontend:latest
+        docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
+        docker push acreadeployca.azurecr.io/frontend:latest
     - name: Build and Push Image 2
       run: |
-        docker build -f ./Backend/Dockerfile -t ACREADeployCA.azurecr.io/backend:latest .
-        docker push ACREADeployCA.azurecr.io/backend:latest
+        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
+        docker push acreadeployca.azurecr.io/backend:latest
