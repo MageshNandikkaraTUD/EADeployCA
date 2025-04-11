@@ -8,7 +8,7 @@ WORKDIR /src
 COPY ./FrontEnd/FrontEnd.csproj ./
 
 # Restore dependencies specified in the project
-RUN dotnet restore "/FrontEnd/FrontEnd.csproj"
+RUN dotnet restore ./FrontEnd/FrontEnd.csproj
 
 # Copy the entire project directory
 COPY . ./
