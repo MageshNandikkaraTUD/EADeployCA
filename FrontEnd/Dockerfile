@@ -15,7 +15,7 @@ COPY ./FrontEnd/FrontEnd.csproj ./
 RUN dotnet restore "FrontEnd.csproj"
 
 # Copy the rest of the source
-COPY . .
+COPY . ./
 
 # Build the app
 RUN dotnet build -c Release -o /app/build
