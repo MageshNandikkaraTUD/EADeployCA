@@ -4,14 +4,11 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 # Set the working directory inside the container
 WORKDIR /src
 
-# Copy the project file into the container
-COPY ./FrontEnd/FrontEnd.csproj ./
-
-# Restore dependencies specified in the project
-RUN dotnet restore ./FrontEnd/FrontEnd.csproj
-
 # Copy the entire project directory
 COPY . ./
+
+# Restore dependencies specified in the project
+RUN dotnet restore /src/EADeployCA/FrontEnd/FrontEnd.csproj
 
 # Build the application with the Release configuration
 RUN dotnet build "/FrontEnd/FrontEnd.csproj" -c Release -o /app/build
