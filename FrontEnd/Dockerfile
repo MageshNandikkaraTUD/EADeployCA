@@ -18,7 +18,7 @@ RUN dotnet restore "FrontEnd.csproj"
 COPY . .
 
 # Build the app
-RUN dotnet build "FrontEnd.csproj" -c Release -o /app/build
+RUN dotnet build -c Release -o /app/build
 
 # Publish to /app/publish
 FROM build AS publish
