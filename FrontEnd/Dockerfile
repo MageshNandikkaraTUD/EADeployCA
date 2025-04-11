@@ -11,7 +11,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copy project file and restore
-COPY FrontEnd.csproj ./
+COPY ./FrontEnd/FrontEnd.csproj ./
 RUN dotnet restore "FrontEnd.csproj"
 
 # Copy the rest of the source
