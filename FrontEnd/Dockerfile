@@ -4,6 +4,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Set the working directory inside the container
 WORKDIR /src
 
+# Copy the project file into the container
+COPY /FrontEnd/FrontEnd.csproj ./
+
 # Copy the entire project directory
 COPY . ./
 
