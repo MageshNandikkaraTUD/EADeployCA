@@ -8,7 +8,7 @@ WORKDIR /src
 COPY . ./
 
 # Restore dependencies specified in the project
-RUN dotnet restore /src/EADeployCA/FrontEnd/FrontEnd.csproj
+RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
 
 # Build the application with the Release configuration
 RUN dotnet build "/FrontEnd/FrontEnd.csproj" -c Release -o /app/build
