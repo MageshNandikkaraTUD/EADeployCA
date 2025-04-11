@@ -1,5 +1,5 @@
 # Use the official .NET SDK image to build the project
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Set the working directory inside the container
 WORKDIR /src
@@ -17,7 +17,7 @@ RUN dotnet build "/FrontEnd/FrontEnd.csproj" -c Release -o /app/build
 RUN dotnet publish "/FrontEnd/FrontEnd.csproj" -c Release -o /app/publish
 
 # Use the official .NET runtime image to run the application
-FROM mcr.microsoft.com/dotnet/runtime:6.0 AS runtime
+FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
 
 # Set the working directory for the runtime
 WORKDIR /app
