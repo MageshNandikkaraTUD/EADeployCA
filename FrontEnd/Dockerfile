@@ -16,7 +16,7 @@ RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
 RUN ls
 
 # Build the application with the Release configuration
-RUN dotnet build --configuration Release --no-restore -o /app/build
+RUN dotnet build --configuration Release -o /app/build
 
 # Publish the application (optional, if publishing is required)
 RUN dotnet publish src/FrontEnd/FrontEnd.csproj -c Release -o /app/publish
