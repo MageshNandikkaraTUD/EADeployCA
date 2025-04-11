@@ -5240,27 +5240,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vargs\\.nuget\\packages\\": {}
+    "C:\\Users\\mages\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Apps\\Car_Commerce\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\vargs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vargs\\source\\repos\\Car_Commerce\\Backend\\obj\\",
+      "projectPath": "C:\\Apps\\Car_Commerce\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\mages\\.nuget\\packages\\",
+      "outputPath": "C:\\Apps\\Car_Commerce\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\vargs\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\mages\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5332,7 +5329,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
