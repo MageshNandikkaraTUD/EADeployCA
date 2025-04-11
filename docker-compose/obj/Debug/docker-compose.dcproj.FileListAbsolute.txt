@@ -38,3 +38,4 @@ C:\Users\vargs\source\repos\Car_Commerce\docker-compose\bin\Debug\Microsoft.Data
 C:\Users\vargs\source\repos\Car_Commerce\docker-compose\bin\Debug\System.IO.Pipelines.dll
 C:\Users\vargs\source\repos\Car_Commerce\docker-compose\bin\Debug\Microsoft.Identity.Client.dll
 C:\Users\vargs\source\repos\Car_Commerce\docker-compose\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+C:\Apps\Car_Commerce\docker-compose\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
