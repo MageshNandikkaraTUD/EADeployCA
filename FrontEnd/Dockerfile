@@ -13,6 +13,8 @@ COPY . ./
 # Restore dependencies specified in the project
 RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
 
+RUN ls
+
 # Build the application with the Release configuration
 RUN dotnet build --configuration Release --no-restore -o /app/build
 
