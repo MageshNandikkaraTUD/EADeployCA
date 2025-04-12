@@ -23,4 +23,4 @@ jobs:
       # Builds and pushes an image up to your Azure Container Registry
       - name: Build and push image to ACR
         run: |
-          az acr build --image ACREADeployCA.azurecr.io/frontend:${{ github.sha }} --registry ACREADeployCA -g EADeployCA2 --file ./FrontEnd/Dockerfile
+          az acr build --image ACREADeployCA.azurecr.io/frontend:${{ github.sha }} --registry ACREADeployCA --file ./FrontEnd/Dockerfile
