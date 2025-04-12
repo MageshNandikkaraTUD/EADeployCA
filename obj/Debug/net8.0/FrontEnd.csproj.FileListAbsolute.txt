@@ -1,0 +1,8 @@
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.GeneratedMSBuildEditorConfig.editorconfig
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.AssemblyInfoInputs.cache
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.AssemblyInfo.cs
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.csproj.CoreCompileInputs.cache
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.MvcApplicationPartsAssemblyInfo.cache
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.RazorAssemblyInfo.cache
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.RazorAssemblyInfo.cs
+C:\Apps\Car_Commerce\obj\Debug\net8.0\FrontEnd.sourcelink.json
