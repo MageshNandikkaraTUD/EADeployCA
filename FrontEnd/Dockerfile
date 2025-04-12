@@ -4,11 +4,15 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Set the working directory inside the container
 WORKDIR /src
 
+RUN ls
+
 # Copy the project file into the container
 #COPY /FrontEnd/FrontEnd.csproj ./
 
 # Copy the entire project directory
 COPY . ./
+
+RUN ls
 
 # Restore dependencies specified in the project
 RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
