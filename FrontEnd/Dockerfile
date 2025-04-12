@@ -7,16 +7,11 @@ WORKDIR /src
 # Copy the entire project directory
 COPY . ./
 
-# Set the correct directory
-WORKDIR /FrontEnd
-
-RUN ls
-
 # Restore dependencies specified in the project
-RUN dotnet restore FrontEnd.csproj
+RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
 
 # Build the application with the Release configuration
-RUN dotnet build --configuration Release -o /app/build
+RUN dotnet build "./FrontEnd/FrontEnd.csproj" --configuration Release -o /app/build
 
 # Publish the application (optional, if publishing is required)
 RUN dotnet publish --configuration Release -o /app/publish
