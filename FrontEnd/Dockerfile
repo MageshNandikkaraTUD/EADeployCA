@@ -8,7 +8,7 @@ WORKDIR /src
 COPY . ./
 
 # Set the correct directory
-RUN cd FrontEnd
+WORKDIR /FrontEnd
 
 RUN ls
 
