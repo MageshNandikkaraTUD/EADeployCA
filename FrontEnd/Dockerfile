@@ -10,6 +10,8 @@ COPY . ./
 # Set the correct directory
 RUN cd FrontEnd
 
+RUN ls
+
 # Restore dependencies specified in the project
 RUN dotnet restore FrontEnd.csproj
 
