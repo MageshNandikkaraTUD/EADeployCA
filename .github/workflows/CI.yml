@@ -15,8 +15,8 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Log in to Azure Container Registry
       run: |
-        az acr login --name ACREADeployCA
+        az acr login --name acreadeployca
     - name: Build and Push Image 1
       run: |
-        docker build -f ./FrontEnd/Dockerfile -t ACREADeployCA.azurecr.io/frontend:latest .
-        docker push ACREADeployCA.azurecr.io/frontend:latest
+        docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
+        docker push acreadeployca.azurecr.io/frontend:latest
