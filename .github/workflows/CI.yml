@@ -4,23 +4,19 @@ on:
 # push:                                            
 #   branches: [ master ]
 jobs:
-
-  buildImage:
-    permissions:
-      contents: read
-      id-token: write
+  build:
     runs-on: ubuntu-latest
     steps:
-      # Checks out the repository this file is in
-      - uses: actions/checkout@v4
-
-      # Logs in with your Azure credentials
-      - name: Azure login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      # Builds and pushes an image up to your Azure Container Registry
-      - name: Build and push image to ACR
-        run: |
-          az acr build --image ACREADeployCA.azurecr.io/frontend:${{ github.sha }} --registry ACREADeployCA --file ./FrontEnd/Dockerfile
+    - name: Check Out Repository
+      uses: actions/checkout@v3
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Log in to Azure Container Registry
+      run: |
+        az acr login --name ACREADeployCA
+    - name: Build and Push Image 1
+      run: |
+        docker build -f ./FrontEnd/Dockerfile -t ACREADeployCA.azurecr.io/frontend:latest .
+        docker push ACREADeployCA.azurecr.io/frontend:latest
