@@ -11,7 +11,7 @@ WORKDIR /src
 
 # Copy project file and restore dependencies
 COPY . ./
-RUN dotnet restore /src/FrontEnd/Backend.csproj
+RUN dotnet restore /src/Backend/Backend.csproj
 
 # Build the project
 RUN dotnet build "./Backend/Backend.csproj" -c Release -o /app/build
