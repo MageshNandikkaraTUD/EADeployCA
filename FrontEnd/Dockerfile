@@ -10,18 +10,15 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy project file and restore
-COPY FrontEnd.csproj ./
-RUN dotnet restore "FrontEnd.csproj"
+COPY . ./
+RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
 
-# Copy the rest of the source
-COPY . .
-
-# Build the app
-RUN dotnet build "FrontEnd.csproj" -c Release -o /app/build
+# Build the application with the Release configuration
+RUN dotnet build "./FrontEnd/FrontEnd.csproj" --configuration Release -o /app/build
 
 # Publish to /app/publish
 FROM build AS publish
-RUN dotnet publish "FrontEnd.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./FrontEnd/FrontEnd.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Final stage for runtime
 FROM base AS final

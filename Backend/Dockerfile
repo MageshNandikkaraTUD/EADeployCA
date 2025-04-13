@@ -10,18 +10,15 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy project file and restore dependencies
-COPY . .
-RUN dotnet restore "Backend.csproj"
-
-# Copy the rest of the app
-COPY . .
+COPY . ./
+RUN dotnet restore /src/FrontEnd/Backend.csproj
 
 # Build the project
-RUN dotnet build "Backend.csproj" -c Release -o /app/build
+RUN dotnet build "./Backend/Backend.csproj" -c Release -o /app/build
 
 # Publish to /app/publish
 FROM build AS publish
-RUN dotnet publish "Backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Backend/Backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Final stage (used in release/debug)
 FROM base AS final
