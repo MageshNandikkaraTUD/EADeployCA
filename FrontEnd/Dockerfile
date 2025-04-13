@@ -1,29 +1,30 @@
-# Use the official .NET SDK image to build the project
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Base image for runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
 
-# Set the working directory inside the container
+# Build image
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy the entire project directory
-COPY . ./
+# Copy project file and restore
+COPY FrontEnd.csproj ./
+RUN dotnet restore "FrontEnd.csproj"
 
-# Restore dependencies specified in the project
-RUN dotnet restore /src/FrontEnd/FrontEnd.csproj
+# Copy the rest of the source
+COPY . .
 
-# Build the application with the Release configuration
-RUN dotnet build "./FrontEnd/FrontEnd.csproj" --configuration Release -o /app/build
+# Build the app
+RUN dotnet build "FrontEnd.csproj" -c Release -o /app/build
 
-# Publish the application (optional, if publishing is required)
-RUN dotnet publish "./FrontEnd/FrontEnd.csproj" --configuration Release -o /app/publish
+# Publish to /app/publish
+FROM build AS publish
+RUN dotnet publish "FrontEnd.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Use the official .NET runtime image to run the application
-FROM mcr.microsoft.com/dotnet/runtime:8.0 AS runtime
-
-# Set the working directory for the runtime
+# Final stage for runtime
+FROM base AS final
 WORKDIR /app
-
-# Copy the published application from the build stage
-COPY --from=build /app/publish ./
-
-# Specify the command to run the application
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "FrontEnd.dll"]

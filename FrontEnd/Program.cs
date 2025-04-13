@@ -1,15 +1,22 @@
 using FrontEnd.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Determine backend URL from environment or default to 'http://backend'
+var backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://backend";
+
+builder.Services.AddHttpClient<CarService>(client =>
+{
+    client.BaseAddress = new Uri(backendUrl);
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+
+
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ListenAnyIP(8080);
 });
-// Add services to the container.
-builder.Services.AddHttpClient<CarService>(client =>
-{
-    client.BaseAddress = new Uri("http://backend"); // internal Docker DNS
-});
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

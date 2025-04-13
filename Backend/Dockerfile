@@ -7,24 +7,21 @@ EXPOSE 8081
 
 # Build image
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copy project file and restore dependencies
-COPY Backend.csproj ./
+COPY . .
 RUN dotnet restore "Backend.csproj"
 
 # Copy the rest of the app
 COPY . .
 
 # Build the project
-WORKDIR /src
-RUN dotnet build "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Backend.csproj" -c Release -o /app/build
 
 # Publish to /app/publish
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Backend.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Final stage (used in release/debug)
 FROM base AS final
