@@ -40,16 +40,16 @@ using (var scope = app.Services.CreateScope())
         var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         Console.WriteLine("Resolved ApplicationDbContext");
 
-        bool carsTableExists = db.Database
-            .SqlQueryRaw<int>(@"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Cars'")
-            .AsEnumerable()
-            .FirstOrDefault() > 0;
+ //       bool carsTableExists = db.Database
+ //           .SqlQueryRaw<int>(@"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Cars'")
+ //           .AsEnumerable()
+ //           .FirstOrDefault() > 0;
 
-        if (carsTableExists)
-        {
-            Console.WriteLine("The 'Cars' table already exists. Skipping migration.");
-        }
-        else
+ //       if (carsTableExists)
+ //       {
+ //           Console.WriteLine("The 'Cars' table already exists. Skipping migration.");
+ //       }
+ //       else
         {
             Console.WriteLine("'Cars' table does not exist. Checking for pending migrations...");
             var migrations = db.Database.GetPendingMigrations().ToList();

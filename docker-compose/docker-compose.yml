@@ -13,7 +13,7 @@ services:
 
   frontend:
     build:
-      context: ../Frontend
+      context: ../FrontEnd
     ports:
       - "5001:8080"
     depends_on:
