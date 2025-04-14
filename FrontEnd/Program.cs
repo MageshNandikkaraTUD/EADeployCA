@@ -3,20 +3,20 @@ using FrontEnd.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // use this for cloud deployment
-/*var backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://backend";
+var backendUrl = Environment.GetEnvironmentVariable("BACKEND_URL") ?? "http://backend";
 
 builder.Services.AddHttpClient<CarService>(client =>
 {
     client.BaseAddress = new Uri(backendUrl);
     client.Timeout = TimeSpan.FromSeconds(30);
-});*/
+});
 
 //use this for local deployment
 
-builder.Services.AddHttpClient<CarService>(client =>
+/*builder.Services.AddHttpClient<CarService>(client =>
 {
     client.BaseAddress = new Uri("http://backend:8080");
-});
+});*/
 
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
