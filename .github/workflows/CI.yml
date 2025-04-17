@@ -22,14 +22,18 @@ jobs:
         sudo apt install -y docker.io
         docker --version
         docker extension install docker/scout 
-    - name: Build, Scan and Push Image 1
+    - name: Build
       run: |
         docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
-        docker push acreadeployca.azurecr.io/frontend:latest
-        docker scout quickcheck acreadeployca.azurecr.io/frontend:latest
-    - name: Build, Scan and Push Image 2
+    - name: Scan
+      uses: Azure/container-scan@v0
+      with: 
+        image-name: acreadeployca.azurecr.io/frontend:latest
+    - name: Push
       run: |
-        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
-        docker push acreadeployca.azurecr.io/backend:latest
-        docker scout quickcheck acreadeployca.azurecr.io/backend:latest
+        docker push acreadeployca.azurecr.io/frontend:latest
+#    - name: Build, Scan and Push Image 2
+#      run: |
+#        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
+#        docker push acreadeployca.azurecr.io/backend:latest
         
