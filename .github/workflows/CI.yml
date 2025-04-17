@@ -16,6 +16,9 @@ jobs:
     - name: Log in to Azure Container Registry
       run: |
         az acr login --name acreadeployca
+    - name: Install Docker Scout
+      run: |
+        docker extension install docker/scout 
     - name: Build, Scan and Push Image 1
       run: |
         docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
