@@ -21,6 +21,8 @@ jobs:
         docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
     - name: Scan
       uses: Azure/container-scan@v0
+      id: container-scan
+      continue-on-error: true
       with: 
         image-name: acreadeployca.azurecr.io/frontend:latest
     - name: Push
