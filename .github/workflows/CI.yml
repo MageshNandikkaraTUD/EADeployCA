@@ -23,10 +23,10 @@ jobs:
     - name: Build, Scan and Push Image 1
       run: |
         docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
-        trivy image acreadeployca.azurecr.io/frontend:latest
+        trivy image --remote acreadeployca.azurecr.io/frontend:latest
         docker push acreadeployca.azurecr.io/frontend:latest
     - name: Build, Scan and Push Image 2
       run: |
         docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
-        trivy image acreadeployca.azurecr.io/backend:latest
+        trivy image --remote acreadeployca.azurecr.io/backend:latest
         docker push acreadeployca.azurecr.io/backend:latest
