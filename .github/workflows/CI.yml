@@ -18,6 +18,9 @@ jobs:
         az acr login --name acreadeployca
     - name: Install Docker Scout
       run: |
+        sudo apt update
+        sudo apt install -y docker.io
+        docker --version
         docker extension install docker/scout 
     - name: Build, Scan and Push Image 1
       run: |
