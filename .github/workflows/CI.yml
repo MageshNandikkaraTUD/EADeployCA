@@ -16,7 +16,7 @@ jobs:
     - name: Log in to Azure Container Registry
       run: |
         az acr login --name acreadeployca
-    - name: Build and Push
+    - name: Build and Push frontend
       run: |
         docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
         docker push acreadeployca.azurecr.io/frontend:latest
@@ -26,8 +26,14 @@ jobs:
         image-ref: 'acreadeployca.azurecr.io/frontend:latest'
         format: 'table'
         ignore-unfixed: true
-#    - name: Build, Scan and Push Image 2
-#      run: |
-#        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
-#        docker push acreadeployca.azurecr.io/backend:latest
+    - name: Build and Push backend
+      run: |
+        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
+        docker push acreadeployca.azurecr.io/backend:latest
+    - name: Run Trivy Scan on ACR Image
+      uses: aquasecurity/trivy-action@0.28.0
+      with: 
+        image-ref: 'acreadeployca.azurecr.io/backend:latest'
+        format: 'table'
+        ignore-unfixed: true
         
