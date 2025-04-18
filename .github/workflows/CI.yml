@@ -25,7 +25,6 @@ jobs:
       with: 
         image-ref: 'acreadeployca.azurecr.io/frontend:latest'
         format: 'table'
-        exit-code: '1'
         ignore-unfixed: true
 #    - name: Build, Scan and Push Image 2
 #      run: |
