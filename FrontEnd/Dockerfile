@@ -5,6 +5,9 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+#Fix Trivy vulnerablity
+RUN apt-get update && apt-get install -y perl-base=5.36.0-7+deb12u2
+
 # Build image
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
