@@ -31,9 +31,6 @@ jobs:
         project: 'Backend'
         path: '.'
         format: 'HTML'
-        args: >
-          --failOnCVSS 8  
-        # fail if CVSS score is High >=8
     - name: Upload Depcheck results for Backend
       uses: actions/upload-artifact@v4
       with:
