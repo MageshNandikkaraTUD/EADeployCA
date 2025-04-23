@@ -9,6 +9,18 @@ jobs:
     steps:
     - name: Check Out Repository
       uses: actions/checkout@v3
+    - name: Depcheck to scan dependencies
+      uses: dependency-check/Dependency-Check_Action@main
+      id: Depcheck
+      with: 
+        project: 'Backend'
+        path: '.'
+        format: 'HTML'
+    - name: Upload Depcheck results for Backend
+      uses: actions/upload-artifact@v4
+      with:
+        name: Depcheck Backend report
+        path: ${{github.workspace}}/reports
     - name: Log in to Azure
       uses: azure/login@v1
       with:
@@ -24,36 +36,24 @@ jobs:
       run: |
         dotnet restore
         dotnet build --configuration Release --no-restore
-    - name: Depcheck to scan dependencies
-      uses: dependency-check/Dependency-Check_Action@main
-      id: Depcheck
-      with: 
-        project: 'Backend'
-        path: '.'
-        format: 'HTML'
-    - name: Upload Depcheck results for Backend
-      uses: actions/upload-artifact@v4
-      with:
-        name: Depcheck Backend report
-        path: ${{github.workspace}}/reports
     - name: Build and Push frontend
       run: |
-        docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:latest .
-        docker push acreadeployca.azurecr.io/frontend:latest
+        docker build -f ./FrontEnd/Dockerfile -t acreadeployca.azurecr.io/frontend:${{ github.run_number }} .
+        docker push acreadeployca.azurecr.io/frontend:${{ github.run_number }}
     - name: Run Trivy Scan on ACR Image
       uses: aquasecurity/trivy-action@0.28.0
       with: 
-        image-ref: 'acreadeployca.azurecr.io/frontend:latest'
+        image-ref: 'acreadeployca.azurecr.io/frontend:${{ github.run_number }}'
         format: 'table'
         ignore-unfixed: true
     - name: Build and Push backend
       run: |
-        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:latest .
-        docker push acreadeployca.azurecr.io/backend:latest
+        docker build -f ./Backend/Dockerfile -t acreadeployca.azurecr.io/backend:${{ github.run_number }} .
+        docker push acreadeployca.azurecr.io/backend:${{ github.run_number }}
     - name: Run Trivy Scan on ACR Image
       uses: aquasecurity/trivy-action@0.28.0
       with: 
-        image-ref: 'acreadeployca.azurecr.io/backend:latest'
+        image-ref: 'acreadeployca.azurecr.io/backend:${{ github.run_number }}'
         format: 'table'
         ignore-unfixed: true
         
