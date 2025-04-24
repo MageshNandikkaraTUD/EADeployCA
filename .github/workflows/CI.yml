@@ -9,6 +9,10 @@ jobs:
     steps:
     - name: Check Out Repository
       uses: actions/checkout@v3
+    - name: Verify Azure CLI version
+      run: az version
+    - name: Upgrade Azure CLI
+      run: az upgrade
     - name: Depcheck to scan dependencies
       uses: dependency-check/Dependency-Check_Action@main
       id: Depcheck
