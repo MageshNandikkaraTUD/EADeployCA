@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: acreadeployca.azurecr.io/backend:latest
+          image: acreadeployca.azurecr.io/backend:58
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: acreadeployca.azurecr.io/frontend:latest
+          image: acreadeployca.azurecr.io/frontend:58
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
