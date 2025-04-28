@@ -5,24 +5,56 @@ metadata:
   name: carcommerce
 ---
 #backend-deployment
+# Blue Backend Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend
+  name: backend-blue
   namespace: carcommerce
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend
+      app: backend-blue
   template:
     metadata:
       labels:
-        app: backend
+        app: backend-blue
     spec:
       containers:
         - name: backend
           image: acreadeployca.azurecr.io/backend:58
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources: 
+            requests: 
+              cpu: 100m  
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+      restartPolicy: Always
+---
+# Green Backend Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-green
+  namespace: carcommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-green
+  template:
+    metadata:
+      labels:
+        app: backend-green
+    spec:
+      containers:
+        - name: backend
+          image: acreadeployca.azurecr.io/backend:59
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -43,7 +75,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: backend
+    app: backend-green
   ports:
     - port: 80
       targetPort: 8080
