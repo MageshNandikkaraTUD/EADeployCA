@@ -1,0 +1,30 @@
+name: Set up cluster                                       
+on:
+ workflow_dispatch:        
+# push:                                            
+#   branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy ARM Template
+        uses: azure/arm-deploy@v1
+        with:
+          resourceGroupName: EADeployCA2
+          template: ./template.json      
+
+      - name: Retrive SSH Key
+        run: |
+          az aks get-credentials --resource-group EADeployCA2 --name carcommercecluster
+
+      - name: Attach ACR to cluster
+        run: |
+          az aks update --name carcommercecluster --resource-group EADeployCA2 --attach-acr ACREADeployCA
