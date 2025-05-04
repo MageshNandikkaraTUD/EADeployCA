@@ -81,24 +81,61 @@ spec:
       targetPort: 8080
 ---
 #frontend-deployment
+#Blue Frontend Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: frontend-blue
   namespace: carcommerce
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-blue
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-blue
     spec:
       containers:
         - name: frontend
           image: acreadeployca.azurecr.io/frontend:58
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources: 
+            requests: 
+              cpu: 100m  
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: BACKEND_URL
+              value: http://backend
+      restartPolicy: Always
+---
+# Green Frontend Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-green
+  namespace: carcommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-green
+  template:
+    metadata:
+      labels:
+        app: frontend-green
+    spec:
+      containers:
+        - name: frontend
+          image: acreadeployca.azurecr.io/frontend:59
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -124,7 +161,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: frontend
+    app: frontend-green
   ports:
     - port: 80
       targetPort: 8080
